@@ -2,8 +2,11 @@
 --a.Створення таблиць бази даних. Команди для створення таблиці повинні містити головний ключ, обмеження типу null / not null,  створення зв'язків 
 --b.Завантаження даних в таблиці 
 
-
-CREATE TABLE book
+-- ---
+-- Table 'book'
+-- 
+-- ---
+CREATE TABLE IF NOT EXISTS book
 (	book_id INTEGER NOT NULL PRIMARY KEY,
 	book_number INTEGER NOT NULL,
 	book_new CHAR(3) NOT NULL,
@@ -18,20 +21,31 @@ CREATE TABLE book
  	book_category_id INTEGER REFERENCES Category(id_category) 
  	
 )
-
-CREATE TABLE Publishing
+-- ---
+-- Table 'publishing'
+-- 
+-- ---
+CREATE TABLE IF NOT EXISTS Publishing
 (
 	id_publishing INTEGER NOT NULL PRIMARY KEY,
 	publishing CHAR(250) NOT NULL
 )
 
-Create table Topic
+-- ---
+-- Table 'Topic'
+-- 
+-- ---
+Create table IF NOT EXISTS Topic
 (
 	id_topic INTEGER NOT NULL PRIMARY KEY,
 	topic CHAR(250) NOT NULL
 )
 
-Create table Category
+-- ---
+-- Table 'Category'
+-- 
+-- ---
+Create table IF NOT EXISTS Category
 (
 	id_category INTEGER NOT NULL PRIMARY KEY,
 	category CHAR(250) NOT NULL
