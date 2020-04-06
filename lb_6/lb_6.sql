@@ -13,9 +13,9 @@ select b.book_name as Назва, b.book_price as Ціна,p.publishing as Ви�
 --4.Вивести значення наступних колонок: тема, категорія, назва книги, назва видавництво. Фільтр за темами і категоріями.
 select t.topic as Тема, c.category as Категорія , b.book_name as Назва,p.publishing as Видавництво 
 	from book b inner join publishing p on b.book_publishing_id = p.id_publishing
-				inner join category c on  b.book_category_id=c.id_category
-				inner join topic t on b.book_topic_id=t.id_topic 
-				order by t.topic,c.category
+		    inner join category c on  b.book_category_id=c.id_category
+		    inner join topic t on b.book_topic_id=t.id_topic 
+		    order by t.topic,c.category
 				
 --5.Вивести книги видавництва 'BHV', видані після 2000 р
 select b.book_name as Назва,b.book_date as Дата_видання,p.publishing as Видавництво from book b inner join publishing p on b.book_publishing_id=p.id_publishing 
