@@ -104,15 +104,15 @@ language sql;
 select * from same_number_pages_3();
 
 --9.Вивести всі книги категорії 'C ++'.
-create function category_C_books()
+create function books_by_category(category char)
 returns table (book_name char, category char)
 as $$
 select book.book_name,category.category from book inner join category on category.id_category=book.book_category_id
-	where category.category like '%C ++%'
+	where category.category like books_by_category.category
 $$
 language sql;		
 
-select * from category_C_books();
+select * from books_by_category('%C ++%');;
 
 --10.Вивести список видавництв, у яких розмір книг перевищує 400 сторінок.
 create function pages_more_400()
@@ -138,15 +138,15 @@ language sql;
 select * from category_book_amount(3);
 
 --12.Вивести список книг видавництва 'BHV', якщо в списку є хоча б одна книга цього видавництва.
-create function book_by_category(category text)
+create function books_by_category_exists(category text)
 returns table(book_name  char, category  char )
 as $$
 select b.book_name ,p.publishing from book b inner join publishing p on b.book_publishing_id= p.id_publishing 
-	where exists (select p.publishing  from publishing p where  b.book_publishing_id= p.id_publishing and p.publishing like book_by_category.category)
+	where exists (select p.publishing  from publishing p where  b.book_publishing_id= p.id_publishing and p.publishing like books_by_category_exists.category)
 $$
 language sql;
 
-select * from book_by_category('BHV%');
+select * from books_by_category_exists('BHV%');
 
 --13.Вивести список книг видавництва 'BHV', якщо в списку немає жодної книги цього видавництва.--??
 create function book_by_category_not_exists(category text)
