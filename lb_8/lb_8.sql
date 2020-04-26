@@ -152,8 +152,8 @@ CREATE TRIGGER book_category_and_publishing_trig
 --9.Видавництво не може випустити більше 10 новинок протягом одного місяця поточного року.
 CREATE FUNCTION less_ten_new() RETURNS trigger AS  $less_ten_new$
 	BEGIN
-		IF ((select count(*) from book where book_new='Yes'and EXTRACT(MONTH from book_date)=EXTRACT(MONTH from current_date))>10 and New.book_new = 'Yes' 
-			and EXTRACT(MONTH from New.book_date)=EXTRACT(MONTH from current_date) ) THEN
+		IF ((select count(*) from book where book_new='Yes'and EXTRACT(MONTH from book_date)=EXTRACT(MONTH from current_date))>10
+			and New.book_new = 'Yes' and EXTRACT(MONTH from New.book_date)=EXTRACT(MONTH from current_date) ) THEN
 			RAISE EXCEPTION 'Видавництво не може випустити більше 10 новинок протягом одного місяця поточного року';
 			END IF;
 		RETURN NEW;
