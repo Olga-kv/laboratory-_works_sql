@@ -18,8 +18,8 @@ CREATE TABLE Event_list (
 	amount_people int NOT NULL)
 	
 insert into Event_list (event_name, event_date, amount_people) values ('IT Conference', '2020-02-18', 15), 
-																	  ('Software Testing MeetUp', '2020-05-26',20),
-																	  ('Mobile MeetUp', '2020-05-27',2);
+								      ('Software Testing MeetUp', '2020-05-26',20),
+								      ('Mobile MeetUp', '2020-05-27',2);
 
 
 --Таблица планировщика
@@ -54,8 +54,8 @@ CREATE OR REPLACE FUNCTION list_people_by_event_name( ev_name char)
 returns table (user_name char)
 as $$
 	select l.user_name from Scheduler s inner join Users_list l  on l.id=s.id_user
-										inner join Event_list e on e.id=s.id_event
-										where e.event_name LIKE list_people_by_event_name.ev_name;
+					    inner join Event_list e on e.id=s.id_event
+								where e.event_name LIKE list_people_by_event_name.ev_name;
 $$
 language sql;
 
@@ -66,8 +66,8 @@ CREATE OR REPLACE FUNCTION amout_people_by_event( ent_name char )
 returns table (amout_registered_people bigint)
 as $$
 	select count(l.user_name) from Scheduler s inner join Users_list l  on l.id=s.id_user
-										inner join Event_list e on e.id=s.id_event
-										where e.event_name LIKE amout_people_by_event.ent_name;
+						   inner join Event_list e on e.id=s.id_event
+								where e.event_name LIKE amout_people_by_event.ent_name;
 $$
 language sql;
 
