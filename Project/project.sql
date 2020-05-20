@@ -28,13 +28,12 @@ CREATE TABLE Scheduler (
 	id_user int NOT NULL,
 	id_event int NOT NULL);
 	
-insert into Scheduler (id_user, id_event) values (1,1);
-insert into Scheduler (id_user, id_event) values (1,2),(2,3),(3,2);
-
-delete from Scheduler
 
 alter table Scheduler add foreign key(id_user) references Users_list (id);
 alter table Scheduler add foreign key(id_event) references Event_list (id);
+
+insert into Scheduler (id_user, id_event) values (1,1);
+insert into Scheduler (id_user, id_event) values (1,2),(2,3),(3,2);
 
 --Поиск мероприятия по названию
 CREATE FUNCTION find_event_by_name ( e_name char)
