@@ -47,8 +47,6 @@ select * from find_event_by_name('IT Conference');
 
 
 --Выводит список людей по названию мероприятия 
-DROP FUNCTION list_people_by_event_name(character);
-
 CREATE OR REPLACE FUNCTION list_people_by_event_name( ev_name char)
 returns table (user_name char)
 as $$
